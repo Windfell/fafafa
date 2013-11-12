@@ -1,0 +1,20 @@
+---
+project_name: flangular
+password: theroots1
+project_root: /home/ticlist
+project_repo: https://fordaaronj:theroots1@bitbucket.org/fordaaronj/ticlist.git
+system_packages:
+  - git
+  - nginx
+  - python-dev
+  - python-setuptools
+  - build-essential
+  - python-pip
+
+python_packages:
+  - pip
+  - virtualenv
+
+check_started:
+  - nginx
+

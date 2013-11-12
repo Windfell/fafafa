@@ -1,0 +1,56 @@
+<div class="row">
+	<div class="large-3 columns">
+		<h4>{{ user.username }}</h4>
+		<p><a ng-click="logout()">Log out</a></p>
+		<p><em>Member since {{ user.time_signup | date:'MMMM d, yyyy' }}</em></p>
+		<img ng-show="user.facebook.id_fb" ng-src="http://graph.facebook.com/{{user.facebook.id_fb}}/picture?type=large">
+	</div>
+	<div class="large-6 columns">
+		<h4>Make Changes</h4>
+		<form>
+			<h6>Your Info</h6>
+			<fieldset>
+				<label for="new-username">Username</label>
+				<input type="text" id="new-username" ng-model="user.username" required maxlength=15>
+				<label for="new-email">Email</label>
+				<input type="email" id="new-email" ng-model="user.email" required>
+				<div ng-show="info_changed" data-alert class="alert-box success">Profile updated!</div>
+				<div ng-show="change_errors" data-alert class="alert-box alert">
+					<div ng-repeat="error in change_errors">{{error}}</div>
+				</div>
+				<button ng-click="new_info()" type="submit">Submit</button>
+			</fieldset>
+		</form>
+
+		<div ng-show="need_password" data-alert class="alert-box alert">Assign a password below, and then unlink Facebook again</div>
+
+		<form ng-show="need_password || user.password">
+			<h6>Change Password</h6>
+			<fieldset>
+				<label for="new-password1">New Password</label>
+				<input type="password" id="new-password1" ng-model="new_password_form.password1" required>
+				<label for="new-password2">New Password (Again)</label>
+				<input type="password" id="new-password2" ng-model="new_password_form.password2" required>
+				<div ng-show="new_password_form.password1 != new_password_form.password2" data-alert class="alert-box alert">
+					Passwords do not match
+				</div>
+				<div ng-show="(new_password_form.password1.length > 0 && new_password_form.password1.length < 4) || password_error" data-alert class="alert-box alert">Password must be greater than 3 characters</div>
+				<div ng-show="password_changed" data-alert class="alert-box success">Password changed!</div>
+				<button ng-click="new_password()" type="submit">Change Password</button>
+			</fieldset>
+		</form>
+		<a ng-hide="user.facebook.id_fb" ng-click="FBLink()">Link Facebook Account</a>
+		<div ng-show="user.facebook.id_fb">
+			<p><a ng-click="FBUnlink()">Unlink Facebook</a></p>
+
+		</div>
+	</div>
+	<div class="large-3 columns">
+		<h4>Of Note</h4>
+		<ul>
+			<li>We will never post to Facebook without your permission</li>
+			<li>You can unlink your Facebook account at any time</li>
+		</ul>
+	</div>
+</div>
+

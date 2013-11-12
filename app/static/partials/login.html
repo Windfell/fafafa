@@ -1,0 +1,39 @@
+<div class="row">
+	<div class="large-4 columns">
+		<h4>Log In</h4>
+		<form>
+			<fieldset>
+				<label for="login-email">Email</label>
+				<input type="email" id="login-email" ng-model="login_form.email" required>
+				<label for="login-password">Password</label>
+				<input id="login-password" type="password" ng-model="login_form.password" required>
+				<div ng-show="login_errors" data-alert class="alert-box alert">
+					<div ng-repeat="error in login_errors">{{error}}</div>
+				</div>
+				<button ng-click="login()" type="submit">Log In</button>
+			</fieldset>
+		</form>
+	</div>
+	<div class="large-4 columns">
+		<h4>Sign up</h4>
+		<form>
+			<fieldset>
+				<label for="signup-username">Username</label>
+				<input type="text" id="signup-username" ng-model="signup_form.username" maxlength=15 required>
+				<label for="signup-email">Email</label>
+				<input type="email" id="signup-email" ng-model="signup_form.email" required>
+				<label for="signup-password">Password</label>
+				<input id="signup-password" type="password" ng-model="signup_form.password" required>
+				<div ng-show="signup_errors" data-alert class="alert-box alert">
+					<div ng-repeat="error in signup_errors">{{error}}</div>
+				</div>
+				<button ng-click="signUp()" type="submit">Sign Up</button>
+			</fieldset>
+		</form>
+	</div>
+		<div class="large-4 columns">
+		<h4>Facebook</h4>
+		<button ng-click="FBLogin()">Facebook Login</button>
+	</div>
+
+</div>
