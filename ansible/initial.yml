@@ -1,0 +1,25 @@
+---
+- hosts: all
+  vars_files:
+    - vars.yml
+  gather_facts: false
+  user: root
+
+  tasks:
+  - name: Add non-root user
+    user: name={{project_name}} password={{password}} system=yes shell=/bin/bash
+
+  - name: Set up non-root user for passwordless login
+    authorized_key: user={{project_name}} key="{{ lookup('file', '~/.ssh/id_rsa.pub')}}"   
+
+  - name: Set up directory
+    file: path=/var/www/{{project_name}} state=directory owner={{project_name}}
+
+  - name: Set up new sudoers file
+    template: src=files/sudoers dest=/etc/sudoers validate='visudo -cf %s'
+
+  - name: Set up ssh access
+    template: src=files/sshd_config dest=/etc/ssh/sshd_config 
+
+  - name: Restart ssh
+    service: name=ssh state=restarted

@@ -1,0 +1,19 @@
+---
+- hosts: all
+  vars_files:
+  - vars.yml
+  gather_facts: false
+  user: "{{project_name}}"
+  sudo: true
+
+  tasks:
+  - name: Install system packages
+    apt: pkg={{item}} state=latest update-cache=yes
+    with_items: system_packages
+
+  - name: Install pip
+    easy_install: name=pip
+
+  - name: Install virtualenv
+    pip: name=virtualenv
+

@@ -1,20 +1,13 @@
 ---
-project_name: flangular
-password: theroots1
-project_root: /home/ticlist
-project_repo: https://fordaaronj:theroots1@bitbucket.org/fordaaronj/ticlist.git
+project_name: fafafa
+password: $1$theroots$O9Y0.fUvIcNkqcEWBw4ym.
+project_repo: https://github.com/fordaaronj/fafafa.git
 system_packages:
   - git
   - nginx
   - python-dev
   - python-setuptools
-  - build-essential
-  - python-pip
-
+  - upstart
 python_packages:
   - pip
   - virtualenv
-
-check_started:
-  - nginx
-

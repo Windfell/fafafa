@@ -1,0 +1,14 @@
+---
+- hosts: all
+  vars_files:
+  - vars.yml
+  gather_facts: false
+  user: "{{project_name}}"
+  sudo: true
+
+  tasks:
+  - name: Pull sources from the repository.
+    git: repo={{project_repo}} dest=/var/www/{{project_name}}    
+
+  - name: Install python packages
+    pip: requirements=/var/www/{{project_name}}/requirements.txt virtualenv={{project_name}}
