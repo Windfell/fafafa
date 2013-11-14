@@ -1,7 +1,3 @@
-"""
-Import blueprints and views here
-"""
-
 from flask import render_template, make_response, abort
 from app import app, db, db_filename
 import os, string, random

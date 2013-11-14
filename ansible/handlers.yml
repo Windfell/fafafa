@@ -5,3 +5,4 @@
 
 - name: reload uwsgi
   service: name=uwsgi state=reloaded
+  sudo_user: root
