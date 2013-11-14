@@ -1,14 +1,26 @@
 ---
 - hosts: all
   vars_files:
-  - vars.yml
+    - vars.yml
   gather_facts: false
   user: "{{project_name}}"
-  sudo: true
 
   tasks:
   - name: Pull sources from the repository.
-    git: repo={{project_repo}} dest=/var/www/{{project_name}}    
+    git: repo={{project_repo}} dest=/var/www/{{project_name}}
+
+  - name: Link nginx config
+    file: src=/var/www/{{project_name}}/nginx dest=/etc/nginx/sites-enabled state=link
+    notify: reload nginx
 
   - name: Install python packages
-    pip: requirements=/var/www/{{project_name}}/requirements.txt virtualenv={{project_name}}
+    pip: requirements=/var/www/{{project_name}}/requirements.txt virtualenv=/home/{{project_name}}/venv/
+
+  - name: Add python path
+    lineinfile: dest=/home/{{project_name}}/venv/bin/activate line='export PYTHONPATH="/var/www/{{project_name}}"'
+
+  - name: Ensure services are started
+    service: name={{services}} state=started
+
+  handlers:
+    - include: handlers.yml

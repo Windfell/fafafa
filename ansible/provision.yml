@@ -17,3 +17,11 @@
   - name: Install virtualenv
     pip: name=virtualenv
 
+  - name: Install uwsgi
+    pip: name=uwsgi
+
+  - name: Set up uwsgi upstart
+    template: src=init/uwsgi.conf dest=/etc/init
+
+  - name: Set up nginx upstart
+    copy: src=init/nginx.conf dest=/etc/init

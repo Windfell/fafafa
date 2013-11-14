@@ -1,0 +1,7 @@
+---
+- name: reload nginx
+  service: name=nginx state=reloaded
+  sudo_user: root
+
+- name: reload uwsgi
+  service: name=uwsgi state=reloaded

@@ -8,6 +8,7 @@ system_packages:
   - python-dev
   - python-setuptools
   - upstart
-python_packages:
-  - pip
-  - virtualenv
+
+services:
+  - nginx
+  - uwsgi

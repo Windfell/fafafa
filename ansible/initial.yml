@@ -16,10 +16,10 @@
     file: path=/var/www/{{project_name}} state=directory owner={{project_name}}
 
   - name: Set up new sudoers file
-    template: src=files/sudoers dest=/etc/sudoers validate='visudo -cf %s'
+    template: src=config/sudoers dest=/etc/sudoers validate='visudo -cf %s'
 
   - name: Set up ssh access
-    template: src=files/sshd_config dest=/etc/ssh/sshd_config 
+    template: src=config/sshd_config dest=/etc/ssh/sshd_config 
 
   - name: Restart ssh
     service: name=ssh state=restarted
