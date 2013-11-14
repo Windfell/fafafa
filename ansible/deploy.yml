@@ -8,19 +8,24 @@
   tasks:
   - name: Pull sources from the repository.
     git: repo={{project_repo}} dest=/var/www/{{project_name}}
+    notify: reload uwsgi
 
-  - name: Link nginx config
-    file: src=/var/www/{{project_name}}/nginx dest=/etc/nginx/sites-enabled state=link
+  - name: Delete default nginx config
+    sudo: yes
+    file: path=/etc/nginx/sites-enabled/default state=absent
+
+  - name: Link new nginx config
+    sudo: yes
+    file: src=/var/www/{{project_name}}/nginx dest=/etc/nginx/sites-enabled/{{project_name}} state=link
     notify: reload nginx
 
   - name: Install python packages
     pip: requirements=/var/www/{{project_name}}/requirements.txt virtualenv=/home/{{project_name}}/venv/
 
-  - name: Add python path
-    lineinfile: dest=/home/{{project_name}}/venv/bin/activate line='export PYTHONPATH="/var/www/{{project_name}}"'
-
   - name: Ensure services are started
-    service: name={{services}} state=started
+    sudo: yes
+    service: name={{item}} state=started
+    with_items: services
 
   handlers:
     - include: handlers.yml
