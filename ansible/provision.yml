@@ -22,6 +22,11 @@
 
   - name: Set up uwsgi upstart
     template: src=init/uwsgi.conf dest=/etc/init
+    notify: reload uwsgi
 
   - name: Set up nginx upstart
     copy: src=init/nginx.conf dest=/etc/init
+    notify: reload nginx
+
+  handlers:
+    - include: handlers.yml
