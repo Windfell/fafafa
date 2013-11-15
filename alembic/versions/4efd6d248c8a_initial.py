@@ -1,13 +1,13 @@
-"""Initiate db
+"""Initial
 
-Revision ID: 561f95cf0044
+Revision ID: 4efd6d248c8a
 Revises: None
-Create Date: 2013-11-02 12:21:25.739374
+Create Date: 2013-11-14 19:57:20.692664
 
 """
 
 # revision identifiers, used by Alembic.
-revision = '561f95cf0044'
+revision = '4efd6d248c8a'
 down_revision = None
 
 from alembic import op
@@ -36,6 +36,7 @@ def upgrade():
     sa.Column('gender', sa.String(length=8), nullable=True),
     sa.Column('locale', sa.String(length=6), nullable=True),
     sa.Column('location', sa.String(length=50), nullable=True),
+    sa.Column('timezone', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

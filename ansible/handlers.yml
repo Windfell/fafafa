@@ -6,3 +6,7 @@
 - name: reload uwsgi
   service: name=uwsgi state=reloaded
   sudo: yes
+
+- name: run migrations
+  chdir: /var/www/{{project_name}}
+  command: source /home/fafafa/venv/bin/activate && alembic upgrade head

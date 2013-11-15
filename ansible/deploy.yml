@@ -8,7 +8,9 @@
   tasks:
   - name: Pull sources from the repository.
     git: repo={{project_repo}} dest=/var/www/{{project_name}}
-    notify: reload uwsgi
+    notify: 
+    - reload uwsgi
+    - run migrations
 
   - name: Delete default nginx config
     sudo: yes
