@@ -8,8 +8,7 @@
   sudo: yes
 
 - name: run migrations
-  chdir: /var/www/{{project_name}}
-  command: source /home/fafafa/venv/bin/activate && alembic upgrade head
+  command: cd /var/www/{{project_name}}/ && source /home/fafafa/venv/bin/activate && alembic upgrade head
 
 
 
