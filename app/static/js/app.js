@@ -2,7 +2,7 @@
 
 // Declare app level module which depends on filters, and services
 
-var app = angular.module('app', ['ngProgress']).
+var app = angular.module('app', []).
 config(['$routeProvider', function($routeProvider, $httpProvider) {
 	$routeProvider.when('/', {templateUrl: '/static/partials/home.html', controller: 'Main'});
   $routeProvider.when('/profile', {templateUrl: '/static/partials/profile.html', controller: 'Profile'});
