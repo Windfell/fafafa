@@ -68,6 +68,7 @@ class Facebook(db.Model):
     __tablename__ = 'facebook'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    username = db.Column(db.String(40))
     id_fb = db.Column(db.Integer)
     first_name = db.Column(db.String(50))
     last_name = db.Column(db.String(50))

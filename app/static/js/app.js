@@ -27,7 +27,7 @@ app.run(function($window, $http, $rootScope, userService) {
           // login status of the person. In this case, we're handling the situation where they 
           // have logged in to the app.
           FB.api('/me', function(response) {
-            // console.log(response);
+            console.log(response);
             userService.fbLogin(response);
         });
       } else if (response.status === 'not_authorized') {

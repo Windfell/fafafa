@@ -1,0 +1,10 @@
+---
+- hosts: all
+  vars_files:
+    - vars.yml
+  gather_facts: false
+  user: "{{project_name}}"
+
+  tasks:
+  - name: Fetch db from host
+    fetch: src=/var/www/{{project_name}}/app/db.db dest=/tmp/{{project_name}}/backup
