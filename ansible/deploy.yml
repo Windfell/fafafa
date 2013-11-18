@@ -24,6 +24,9 @@
   - name: Install python packages
     pip: requirements=/var/www/{{project_name}}/requirements.txt virtualenv=/home/{{project_name}}/venv/
 
+  - name: Add app directory to python path for virtualenv
+    template: dest=/home/{{project_name}}/venv/lib/python2.7/site-packages/app_path.pth src=config/app_path.pth
+
   - name: Ensure services are started
     sudo: yes
     service: name={{item}} state=started
