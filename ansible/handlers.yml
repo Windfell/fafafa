@@ -8,4 +8,4 @@
   sudo: yes
 
 - name: run migrations
-  command: source /home/fafafa/venv/bin/activate && cd /var/www/{{project_name}} && alembic upgrade head
+  command: source /home/fafafa/venv/bin/activate && cd /var/www/{{project_name}} && export PYTHONPATH=$PYTHONPATH:/var/www/{{project_name}} && alembic upgrade head
