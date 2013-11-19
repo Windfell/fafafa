@@ -7,16 +7,16 @@ Check out the demo at [fafafa.co](http://www.fafafa.co)
 FaFaFa is meant to get you up and going as soon as possible with user authentication, Facebook integration, database migrations, and deployment
 
 FaFaFa is a boilerplate application combining the following:
-* [http://flask.pocoo.org/](Flask) - Python microframework
-* [http://angularjs.org/](AngularJS) - Javascript framework
-* [http://foundation.zurb.com/](Foundation) - Responsive front-end framework
-* [https://pypi.python.org/pypi/alembic](Alembic) - Database migrations tool
+* [Flask](http://flask.pocoo.org/) - Python microframework
+* [AngularJS](http://angularjs.org/) - Javascript framework
+* [Foundation](http://foundation.zurb.com/) - Responsive front-end framework
+* [Alembic](https://pypi.python.org/pypi/alembic) - Database migrations tool
 * Facebook login integration
-* [http://www.ansibleworks.com/docs/](Ansible) - Provisioning and deployment automation
+* [Ansible](http://www.ansibleworks.com/docs/) - Provisioning and deployment automation
 
 It also includes a few extras:
-* CSRF Protection
-* Loading bar at the bottom of the header, integrated with all AngularJS POST requests (heavily inspired by [http://victorbjelkholm.github.io/ngProgress/(ngProgress)])
+* CSRF protection (slightly modified from (here)[http://flask.pocoo.org/snippets/3/])
+* Loading bar at the bottom of the header, integrated with all AngularJS POST requests (heavily inspired by [ngProgress](http://victorbjelkholm.github.io/ngProgress/))
 * Profile page for linking / unlinking Facebook, and chaging usernames, passwords, and emails
 
 Let's get started...
@@ -47,13 +47,13 @@ Let's get started...
         python runserver.py
 
 ### Now, let's set up deployment
-1.  Spin up your droplet on DigitalOcean (I used Ubuntu 13.10 x64)
-2.  Set up passwordless root login to the remote host. On a Linux machine, this can be done using
+1.  Spin up your droplet on DigitalOcean (I used Ubuntu 13.10 x64) or other VPS provider. If you already have a VPS set up (login as non-root with sudo access), you can skip steps 3-6. Make sure you change the user in ansible/provision.yml and ansible/deploy.yml.  
+2.  Replace the link in ansible/hosts with your remote host ip
+3.  Set up passwordless root login to the remote host. On a Linux machine, this can be done using
     
         ssh-keygen
         ssh-copy-id [ip address of remote host]
 
-3.  Replace the link in ansible/hosts with your remote host ip
 4.  Generate a sudo password for the non-root user (to be created) with
     
         openssl passwd -salt [salt] -1 [plaintext]
