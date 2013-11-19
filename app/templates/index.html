@@ -20,8 +20,14 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
   
+  <script>
+  document.write('<script src=/static/foundation/js/vendor/' +
+  ('__proto__' in {} ? 'zepto' : 'jquery') +
+  '.js><\/script>')
+  </script>
+
   {% assets filter="jsmin", output="gen/packed.js",
-      "foundation/js/vendor/zepto",  "foundation/js/foundation.min.js", "js/app.js", "js/services.js", "js/controllers.js", "js/filters.js", "js/directives.js" %}
+      "foundation/js/foundation.min.js", "js/app.js", "js/services.js", "js/controllers.js", "js/filters.js", "js/directives.js" %}
       <script type="text/javascript" src="{{ ASSET_URL }}"></script>
   {% endassets %}
   
