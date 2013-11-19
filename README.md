@@ -1,8 +1,25 @@
 FaFaFa
 ======
-Flask // Angular // Foundation // Alembic // Facebook // Ansible
+Flask // AngularJS // Foundation // Alembic // Facebook // Ansible
 ------------------------
 Check out the demo at [fafafa.co](http://www.fafafa.co)
+
+FaFaFa is meant to get you up and going as soon as possible with user authentication, Facebook integration, database migrations, and deployment
+
+FaFaFa is a boilerplate application combining the following:
+* [http://flask.pocoo.org/](Flask) - Python microframework
+* [http://angularjs.org/](AngularJS) - Javascript framework
+* [http://foundation.zurb.com/](Foundation) - Responsive front-end framework
+* [https://pypi.python.org/pypi/alembic](Alembic) - Database migrations tool
+* Facebook login integration
+* [http://www.ansibleworks.com/docs/](Ansible) - Provisioning and deployment automation
+
+It also includes a few extras:
+* CSRF Protection
+* Loading bar at the bottom of the header, integrated with all AngularJS POST requests (heavily inspired by [http://victorbjelkholm.github.io/ngProgress/(ngProgress)])
+* Profile page for linking / unlinking Facebook, and chaging usernames, passwords, and emails
+
+Let's get started...
 
 ### First, let's set up the environment locally
 1.  Clone this environment locally to /var/www/[project_name] in a virtualenv (I recommend virtualenvwrapper)
