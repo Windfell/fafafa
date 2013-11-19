@@ -16,13 +16,13 @@ FaFaFa is a boilerplate application combining the following:
 
 It also includes a few extras:
 * CSRF protection (slightly modified from (here)[http://flask.pocoo.org/snippets/3/])
-* Loading bar at the bottom of the header, integrated with all AngularJS POST requests (heavily inspired by [ngProgress](http://victorbjelkholm.github.io/ngProgress/))
+* Loading bar at the bottom of the header, integrated with all AngularJS POST requests (heavily inspired by [ngProgress](http://victorbjelkholm.github.io/ngProgress/)\)
 * Profile page for linking / unlinking Facebook, and chaging usernames, passwords, and emails
 
 Let's get started...
 
 ### First, let's set up the environment locally
-1.  Clone this environment locally to /var/www/[project_name] in a virtualenv (I recommend virtualenvwrapper)
+1.  Clone this environment locally to /var/www/[project_name] in a virtualenv (I recommend [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/))
 2.  Install the required python packages into the virtualenv
 
         pip install -r requirements.txt
