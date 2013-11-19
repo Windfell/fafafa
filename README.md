@@ -42,7 +42,19 @@ Let's get started...
 5.  Change the following line in app/\__init\__.py
     
         app.secret_key = 'CHANGE_THIS'
-6.  Test your application by running the following and going to [localhost:5555](http://localhost:5555)
+
+6.  Change the following block in /app/templates/index.html to your Google Analytics account information, or delete it
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-45881225-1', 'fafafa.co');
+            ga('send', 'pageview');
+        </script>
+7.  Test your application by running the following and going to [localhost:5555](http://localhost:5555)
 
         python runserver.py
 
