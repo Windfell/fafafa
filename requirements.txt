@@ -1,5 +1,6 @@
 Flask==0.10.1
 Flask-Actions==0.6.6
+Flask-Assets==0.8
 Flask-Login==0.2.7
 Flask-SQLAlchemy==1.0
 Jinja2==2.7.1
@@ -13,6 +14,7 @@ argparse==1.2.1
 blinker==1.3
 ecdsa==0.10
 itsdangerous==0.23
+jsmin==2.0.8
 paramiko==1.12.0
 pycrypto==2.6.1
 pyparsing==2.0.1

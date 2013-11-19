@@ -80,3 +80,8 @@ Now, visit the ip address of your remote host, and the application should be run
         alembic upgrade head
 4.  Check in changes to your github repository
 5.  On your next deploy, alembic will sync the changes made to your models
+
+### Other Notes
+* SASS is used here, but is not necessary in the least. Feel free to simply modify the css files in app/static/css. Otherwise, while developing locally, use the following command to generate the appropriate css. 
+
+        sass -w /var/www/fafafa/app/static/sass/:/var/www/fafafa/app/static/css/

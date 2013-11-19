@@ -1,6 +1,7 @@
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext import login
+from flask.ext.assets import Environment, Bundle
 
 app = Flask(__name__)
 app.debug = True
@@ -13,3 +14,6 @@ db = SQLAlchemy(app)
 # Flask-Login
 login_manager = login.LoginManager()
 login_manager.setup_app(app)
+
+# Flask-Assets
+assets = Environment(app)
