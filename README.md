@@ -15,7 +15,7 @@ FaFaFa is a boilerplate application combining the following:
 * [Ansible](http://www.ansibleworks.com/docs/) - Provisioning and deployment automation
 
 It also includes a few extras:
-* CSRF protection (slightly modified from (here)[http://flask.pocoo.org/snippets/3/])
+* CSRF protection (slightly modified from [here](http://flask.pocoo.org/snippets/3/))
 * Loading bar at the bottom of the header, integrated with all AngularJS POST requests (heavily inspired by [ngProgress](http://victorbjelkholm.github.io/ngProgress/)\)
 * Profile page for linking / unlinking Facebook, and chaging usernames, passwords, and emails
 
