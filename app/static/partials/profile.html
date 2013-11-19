@@ -40,10 +40,8 @@
 			</fieldset>
 		</form>
 		<a ng-hide="user.facebook.id_fb" ng-click="FBLink()">Link Facebook Account</a>
-		<div ng-show="user.facebook.id_fb">
-			<p><a ng-click="FBUnlink()">Unlink Facebook</a></p>
-
-		</div>
+		<div ng-show="facebook_error === 'linked'" data-alert class="alert-box alert">Facebook account linked to another user</div>
+		<a ng-show="user.facebook.id_fb" ng-click="FBUnlink()">Unlink Facebook</a>
 	</div>
 	<div class="large-3 columns">
 		<h4>Of Note</h4>

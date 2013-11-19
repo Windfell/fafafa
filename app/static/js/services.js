@@ -2,7 +2,7 @@
 
 /* Services */
 
-app.service('userService', function($rootScope, $http, $location) {
+app.service('userService', function($rootScope, $http, $location, $timeout) {
 	this.logout = function() {
 		if ($rootScope.user.facebook) {
 			FB.logout(function(response) {});
@@ -22,10 +22,19 @@ app.service('userService', function($rootScope, $http, $location) {
 			// http://stackoverflow.com/questions/16299362/angular-js-http-post-not-working-no-error
 			$http.post('/user/fb', {user:response})
 			.success(function(data, status, headers, config) {
-				$rootScope.user = data['user'];
-				if ($location.path() === '/login') {
-					$location.path('/');
+				if (data['result'] === 'success') {
+					$rootScope.user = data['user'];
+					if ($location.path() === '/login') {
+						$location.path('/');
+					}
 				}
+				else {
+					$rootScope.facebook_error = data['error'];
+                    $timeout(function() {
+                        $rootScope.facebook_error = false;
+                    }, 5000);  
+				}
+
 			})
 			.error(function(data, status, headers, config) {
 				console.log(status);

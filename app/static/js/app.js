@@ -14,7 +14,7 @@ app.run(function($window, $http, $rootScope, userService) {
 	$window.fbAsyncInit = function() {
 		FB.init({
       appId      : '512587888752895', // App ID
-      channelUrl : '//www.moticoin.com/static/vendor/channel.html', // Channel File
+      channelUrl : '//www.fafafa.co/static/vendor/channel.html', // Channel File
       status     : true, // check login status
       cookie     : true, // enable cookies to allow the server to access the session
       xfbml      : true  // parse XFBML
@@ -27,7 +27,6 @@ app.run(function($window, $http, $rootScope, userService) {
           // login status of the person. In this case, we're handling the situation where they 
           // have logged in to the app.
           FB.api('/me', function(response) {
-            console.log(response);
             userService.fbLogin(response);
         });
       } else if (response.status === 'not_authorized') {

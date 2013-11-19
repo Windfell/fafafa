@@ -27,6 +27,7 @@ app.controller('Profile', function($scope, $http, $rootScope, $timeout, $locatio
                     $scope.password_error = true;
                 }
                 else {
+                    $rootScope.user = data['user'];
                     $scope.password_changed = true;
                     $timeout(function() {
                         $scope.password_changed = false;
@@ -119,7 +120,6 @@ app.controller('Login', function($scope, $http, $rootScope, $location) {
     		if ($scope.login_form.email && $scope.login_form.password) {
 	            $http.post('/user/login', $scope.login_form).
 	                success(function(data, status, headers, config) {
-	                	console.log(data);
 	                    if (data['result'] === 'error') {
                		    	$scope.login_errors = [];
 	                        if (data['error'] === 'password') {

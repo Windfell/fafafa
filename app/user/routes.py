@@ -10,39 +10,53 @@ user = Blueprint('user', __name__)
 def fb():
     data = json.loads(request.data)
     fb_user = data['user']
+    
+    new_facebook = False
+    try:
+        facebook = Facebook.query.filter(Facebook.id_fb == fb_user['id'])[0]
+    except Exception, e:
+        new_facebook = True
+
+    # Logged out user -> log them in
+    # Logged in user -> make sure fb account isn't linked elsewhere, otherwise link it
     if login.current_user.is_anonymous():
-        # User isn't logged in
-        try:
-            user = User.query.filter(User.email==fb_user['email'])[0]
-        except Exception, e:
+        if new_facebook:
             try:
-                user = User.query.filter(User.username == fb_user['username'])[0]
-                # If username already exists (but for a different user), need to make this unique
+                # Check if username exists, create a unique one if so
+                existing_user = User.query.filter(User.username == fb_user['username'])[0]
                 new_username = fb_user['username'] + fb_user['id']
             except Exception, e:
                 new_username = fb_user['username']
             user = User(new_username, fb_user['email'])
             db.session.add(user)
-            db.session.commit()
+            try:
+                db.session.commit()
+            except Exception, e:
+                print e
+                return jsonify(result='error', error='email')
+            facebook = Facebook(user.id, fb_user['id'])
+        else:
+            user = User.query.filter(User.facebook == facebook)[0]
     else:
-        # Linking FB account to logged in user
         user = login.current_user
-  
-    new_facebook = False
+        if new_facebook:
+            facebook = Facebook(user.id, fb_user['id'])
+        else:
+            try:
+                facebook = user.facebook
+            except Exception, e:
+                # User is logged in and the facebook account exists, but is not linked to
+                # the current account
+                return jsonify(result='error', error='linked')
 
-    # Either create new Facebook or update the existing one
-    try:
-        facebook = Facebook.query.filter(Facebook.id_fb == fb_user['id'])[0]
-    except Exception, e:
-        new_facebook = True
-        facebook = Facebook(user.id, fb_user['id'])
-
+    # Update FB information
     facebook.first_name = fb_user['first_name']
     facebook.last_name = fb_user['last_name']
     facebook.gender = fb_user['gender']
     facebook.locale = fb_user['locale']
     facebook.location = fb_user['location']['name']
     facebook.timezone = fb_user['timezone']
+    facebook.username = fb_user['username']
 
     if new_facebook:
         db.session.add(facebook)
@@ -89,7 +103,7 @@ def user_change_password():
         if len(errors) == 0:
             user.set_password(data['password1'])
             db.session.commit()
-            return jsonify(result = 'success')
+            return jsonify(result = 'success', user = user.json())
     return jsonify(result = 'error', error = 'password')
 
 @user.route('/logout', methods=['POST'])
