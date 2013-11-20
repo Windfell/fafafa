@@ -44,6 +44,13 @@ app.service('userService', function($rootScope, $http, $location, $timeout) {
 	}
 });
 
+app.service('analytics', function($rootScope, $window, $location) {
+	$rootScope.$on('$viewContentLoaded', function() {
+		console.log('Sent');
+		$window._gaq.push(['_trackPageview', $location.path()]);
+	});
+});
+
 app.service('progressService', function($rootScope, $timeout) {
 	var progress;
 	var self = this;
@@ -77,7 +84,7 @@ app.service('progressService', function($rootScope, $timeout) {
 	}
 });
 
-app.factory('httpInterceptor', function (progressService, $rootScope) {
+app.factory('httpInterceptor', function (progressService) {
     return {
         request: function (config) {
         	if (config['method'] === 'POST') {

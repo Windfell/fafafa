@@ -43,7 +43,7 @@ Let's get started...
     
         app.secret_key = 'CHANGE_THIS'
 
-6.  Change the following block in /app/templates/index.html to your Google Analytics account information, or delete it
+6.  Change the following block in /app/templates/index.html to your Google Analytics account information
 
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -52,7 +52,6 @@ Let's get started...
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
             ga('create', 'UA-45881225-1', 'fafafa.co');
-            ga('send', 'pageview');
         </script>
 7.  Test your application by running the following and going to [localhost:5555](http://localhost:5555)
 

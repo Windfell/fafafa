@@ -10,7 +10,12 @@ config(['$routeProvider', function($routeProvider, $httpProvider) {
 	$routeProvider.otherwise({redirectTo: '/'});
 }]);
 
-app.run(function($window, $http, $rootScope, userService) {
+app.run(function($window, $http, $rootScope, $location, userService) {
+
+  $rootScope.$on('$viewContentLoaded', function() {
+    ga('send', 'pageview', {'page': $location.path()});                
+  });
+
 	$window.fbAsyncInit = function() {
 		FB.init({
       appId      : '512587888752895', // App ID
